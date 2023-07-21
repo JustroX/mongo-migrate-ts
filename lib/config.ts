@@ -32,7 +32,7 @@ export interface Config {
   options?: MongoClientOptions;
   fileExt?: string;
 
-  afterNew?: (migrationPath: string) => void;
+  afterNew?: (migrationPath: string, name: string) => void;
   afterUp?: () => void;
   afterDown?: () => void;
 }

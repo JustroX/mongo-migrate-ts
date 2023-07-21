@@ -47,7 +47,7 @@ export const cli = (config?: Config): void => {
           fileExt: config.fileExt,
         });
 
-        if (config.afterNew) config.afterNew(path);
+        if (config.afterNew) config.afterNew(path, name);
       });
 
     program
