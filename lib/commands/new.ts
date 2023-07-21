@@ -40,7 +40,7 @@ export const getMigrationTemplate = (
   );
 };
 
-export const newCommand = (opts: CommandNewOptions): string => {
+export const newCommand = (opts: CommandNewOptions) => {
   const { migrationName, migrationsDir, templateFile, fileExt } = opts;
 
   if (!fs.existsSync(migrationsDir)) {
@@ -56,5 +56,5 @@ export const newCommand = (opts: CommandNewOptions): string => {
 
   fs.writeFileSync(migrationPath, template);
 
-  return migrationPath;
+  return { migrationPath, className };
 };

@@ -40,14 +40,14 @@ export const cli = (config?: Config): void => {
           templateFile = undefined;
         }
 
-        const path = newCommand({
+        const { migrationPath, className } = newCommand({
           migrationName: name,
           migrationsDir: config.migrationsDir,
           templateFile: templateFile,
           fileExt: config.fileExt,
         });
 
-        if (config.afterNew) config.afterNew(path, name);
+        if (config.afterNew) config.afterNew(migrationPath, className, name);
       });
 
     program
