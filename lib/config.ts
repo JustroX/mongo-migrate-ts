@@ -31,6 +31,10 @@ export interface Config {
   };
   options?: MongoClientOptions;
   fileExt?: string;
+
+  afterNew?: (migrationPath: string) => void;
+  afterUp?: () => void;
+  afterDown?: () => void;
 }
 
 export const readConfigFromFile = (filePath: string): Config => {

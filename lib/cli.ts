@@ -40,12 +40,14 @@ export const cli = (config?: Config): void => {
           templateFile = undefined;
         }
 
-        newCommand({
+        const path = newCommand({
           migrationName: name,
           migrationsDir: config.migrationsDir,
           templateFile: templateFile,
           fileExt: config.fileExt,
         });
+
+        if (config.afterNew) config.afterNew(path);
       });
 
     program
@@ -54,6 +56,7 @@ export const cli = (config?: Config): void => {
       .action(async () => {
         try {
           await up({ config });
+          if (config.afterUp) config.afterUp();
         } catch (e) {
           console.error(e);
           process.exitCode = 1;
@@ -77,6 +80,8 @@ export const cli = (config?: Config): void => {
           config,
           mode: opts.last ? 'last' : 'all',
         });
+
+        if (config.afterDown) config.afterDown();
       });
 
     program
